@@ -1,0 +1,122 @@
+:root {
+  --bg-dark: #0f172a;
+  --bg-card: #1e293b;
+  --primary: #06b6d4;
+  --primary-glow: rgba(6, 182, 212, 0.4);
+  --accent: #f97316;
+  --accent-glow: rgba(249, 115, 22, 0.4);
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --danger: #ef4444;
+  --success: #22c55e;
+}
+
+/* 1. 电脑网页背景：让它变成一个深色的展示台 */
+body {
+  margin: 0;
+  background-color: #000000; /* 纯黑背景衬托手机 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 2. 定义手机外壳：强制尺寸，居中显示 */
+.mobile-frame {
+  width: 390px; /* 标准 iPhone 宽度 */
+  height: 844px; /* 标准 iPhone 高度 */
+  max-height: 95vh; /* 防止在小屏幕笔记本上撑破屏幕 */
+  background-color: var(--bg-dark);
+  border-radius: 40px; /* 手机的大圆角 */
+  box-shadow: 0 0 0 10px #334155, 0 0 50px rgba(0,0,0,0.5); /* 模拟手机边框和投影 */
+  position: relative; /* 让内部元素绝对定位 */
+  overflow: hidden; /* 切掉溢出圆角的内容 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 3. 内容滚动区：允许滚动，但隐藏进度条 */
+.scroll-area {
+  flex: 1; /* 占满除去导航栏的所有空间 */
+  overflow-y: auto; /* 允许垂直滚动 */
+  padding-bottom: 80px; /* 防止内容被底部导航遮挡 */
+  
+  /* 隐藏滚动条的核心代码 */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE 10+ */
+}
+
+/* Chrome/Safari/Edge 隐藏滚动条 */
+.scroll-area::-webkit-scrollbar {
+  display: none;
+}
+
+/* 动画关键帧保持不变 */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 10px var(--primary-glow); }
+  50% { box-shadow: 0 0 20px var(--primary-glow); }
+}
+
+@keyframes breathing {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* 底部导航栏调整：现在它是相对于手机外壳定位 */
+.bottom-nav {
+  position: absolute; /* 绝对定位在手机底部 */
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid #334155;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  padding-bottom: 24px; /* iPhone 底部横条的安全距离 */
+  z-index: 100;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.nav-item.active {
+  color: var(--primary);
+}
+
+.nav-icon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 4px;
+}
+
+.ai-btn-wrapper {
+  position: relative;
+  top: -20px;
+}
+
+.ai-btn {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--primary), #3b82f6);
+  border-radius: 50%;
+  border: 4px solid var(--bg-dark);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 15px var(--primary-glow);
+  cursor: pointer;
+  animation: breathing 3s infinite ease-in-out;
+}

@@ -1,0 +1,112 @@
+:root {
+  --bg-dark: #0f172a;
+  --bg-card: #1e293b;
+  --primary: #06b6d4;
+  --primary-glow: rgba(6, 182, 212, 0.4);
+  --accent: #f97316;
+  --accent-glow: rgba(249, 115, 22, 0.4);
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --danger: #ef4444;
+  --success: #22c55e;
+}
+
+/* 新增：App 容器样式，用于桌面端布局 */
+.app-container {
+  width: 100%;
+  max-width: 430px; /* 以 iPhone Pro Max 为基准，防止在宽屏上拉伸 */
+  margin: 0 auto; /* 水平居中 */
+  height: 100vh; /* 占满整个视窗高度 */
+  position: relative; /* 关键：让 bottom-nav 相对于它定位 */
+  background-color: var(--bg-dark); /* 确保容器有背景色 */
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.3); /* 在PC端给个阴影，更有质感 */
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  /* 关键：禁止浏览器窗口本身的滚动条 */
+  overflow: hidden;
+}
+
+/* 核心：滚动容器的样式 */
+.scroll-container {
+  /* 关键：计算滚动区域的高度 = 屏幕高度 - 底部导航栏高度 */
+  height: calc(100vh - 70px); /* 假设导航栏是70px高 */
+  overflow-y: auto; /* 只允许垂直方向滚动 */
+
+  /* 核心：隐藏滚动条 */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+/* Chrome, Safari 等 */
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* 底部导航栏样式 */
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px; /* 固定导航栏高度，用于上面的calc()计算 */
+  background-color: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid #334155;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 100;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.nav-item.active {
+  color: var(--primary);
+}
+
+.nav-icon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 4px;
+}
+
+/* AI 按钮特效 */
+.ai-btn-wrapper {
+  position: relative;
+  top: -20px;
+}
+
+.ai-btn {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--primary), #3b82f6);
+  border-radius: 50%;
+  border: 4px solid var(--bg-dark);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 15px var(--primary-glow);
+  cursor: pointer;
+  animation: breathing 3s infinite ease-in-out;
+}
+
+@keyframes breathing {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
