@@ -16,6 +16,7 @@
   width: 100%;
   max-width: 430px; /* 以 iPhone Pro Max 为基准，防止在宽屏上拉伸 */
   margin: 0 auto; /* 水平居中 */
+  height: 100vh;
   height: 100dvh; /* 占满整个视窗高度 */
   position: relative; /* 关键：让 bottom-nav 相对于它定位 */
   background-color: var(--bg-dark); /* 确保容器有背景色 */
@@ -35,6 +36,7 @@ body {
 /* 核心：滚动容器的样式 */
 .scroll-container {
   /* 关键：计算滚动区域的高度 = 屏幕高度 - 底部导航栏高度 */
+  height: calc(100vh - 70px);
   height: calc(100dvh - 70px); /* 假设导航栏是70px高 */
   overflow-y: auto; /* 只允许垂直方向滚动 */
 
