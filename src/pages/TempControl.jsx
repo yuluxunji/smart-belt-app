@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import './TempControl.css';
 
-
 export default function TempControl() {
-  const [temp, setTemp] = useState(40); // 默认 40度
+  const { t } = useTranslation();
+  const [temp, setTemp] = useState(40);
   const [isOn, setIsOn] = useState(false);
 
   return (
-    <div style={{ padding: 24 }}>
-      <h2>智能温控</h2>
+    <div className="page-container">
+      <h2>{t('temp_title')}</h2>
 
       <div className={`temp-dial ${isOn ? 'hot' : ''}`}>
         <div className="current-temp">{isOn ? temp : '--'}°C</div>
-        <div className="label">{isOn ? '加热中' : '待机'}</div>
+        <div className="label">{isOn ? t('temp_status_heating') : t('temp_status_standby')}</div>
       </div>
 
       <div className="control-card">
         <div className="row">
-          <span>总开关</span>
+          <span className='setting-label'>{t('temp_toggle_label')}</span>
           <div 
             className={`toggle-switch ${isOn ? 'on' : ''}`} 
             onClick={() => setIsOn(!isOn)}
@@ -38,12 +39,11 @@ export default function TempControl() {
               onChange={(e) => setTemp(e.target.value)}
               className="styled-range"
             />
-            <p className="note">AI 建议：41.5°C (根据您的生理周期预测)</p>
+            <p className="note">{t('temp_ai_suggestion')}</p>
           </div>
         )}
       </div>
-
-      
     </div>
   );
 }
+

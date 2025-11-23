@@ -1,0 +1,41 @@
+.page-container {
+  padding: 24px;
+}
+
+.setting-card {
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.setting-label {
+  font-weight: bold;
+}
+
+.lang-switcher {
+  display: flex;
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.lang-switcher button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.lang-switcher button.active {
+  background: var(--primary);
+  color: white;
+}
